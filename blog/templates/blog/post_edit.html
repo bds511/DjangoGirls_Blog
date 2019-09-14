@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div>
+    <h1><a href="#">
+    {% if pk %}
+        {{ pk }}번 글을 수정합니다.
+    {% else %}
+        새 글을 씁니다.
+    {% endif %}</a></h1>
+    <form method="POST" class="post-form" >{% csrf_token %}
+        {{ form.as_p }}
+        <scan style="float: right">
+            <button type="submit" class="save btn btn-default">Save</button>
+            {% if pk %}<a href="{% url 'post_detail' pk=pk %}" type="button" class="save btn btn-warning">Cancle</a>{% endif %}
+        </scan>
+    </form>
+    </div>
+{% endblock %}
